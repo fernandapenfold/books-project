@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { authenticate } from "../store";
 
@@ -6,14 +6,15 @@ import { authenticate } from "../store";
  * COMPONENT
  */
 const AuthForm = ({ name, displayName, _authenticate, error }) => {
-  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    setPassword("");
+  }, [error]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    _authenticate(username, password, e.target.name);
-    setUsername("");
-    setPassword("");
+    _authenticate(e.target.username.value, password, e.target.name);
   };
 
   return (
@@ -26,8 +27,6 @@ const AuthForm = ({ name, displayName, _authenticate, error }) => {
           <input
             name="username"
             type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
           />
         </div>
         <div>

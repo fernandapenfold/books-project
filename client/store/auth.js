@@ -1,17 +1,20 @@
 import axios from "axios";
 import history from "../history";
+import { makeActionCreator, makeReducer } from "./factoryFunctions";
 
 const TOKEN = "token";
 
 /**
  * ACTION TYPES
  */
-const SET_AUTH = "SET_AUTH";
+const SET_AUTH_USER = "SET_AUTH_USER";
+const SET_AUTH_ERROR = "SET_AUTH_ERROR";
 
 /**
  * ACTION CREATORS
  */
-const setAuth = (auth) => ({ type: SET_AUTH, auth });
+const setAuthUser = makeActionCreator(SET_AUTH_USER, "user");
+const setAuthError = makeActionCreator(SET_AUTH_ERROR, "error");
 
 /**
  * THUNK CREATORS
@@ -24,7 +27,7 @@ export const me = () => async (dispatch) => {
         authorization: token,
       },
     });
-    return dispatch(setAuth(res.data));
+    return dispatch(setAuthUser(res.data));
   }
 };
 
@@ -35,27 +38,24 @@ export const authenticate =
       window.localStorage.setItem(TOKEN, res.data.token);
       dispatch(me());
     } catch (authError) {
-      return dispatch(setAuth({ error: authError }));
+      return dispatch(setAuthError({ error: authError }));
     }
   };
 
 export const logout = () => {
   window.localStorage.removeItem(TOKEN);
-  history.push("/login");
-  return {
-    type: SET_AUTH,
-    auth: {},
-  };
+  return setAuthUser({});
 };
 
 /**
  * REDUCER
  */
-export default function (state = {}, action) {
-  switch (action.type) {
-    case SET_AUTH:
-      return action.auth;
-    default:
-      return state;
-  }
-}
+const selectUser = (state, action) => action.user;
+const selectError = (state, action) => action.error;
+
+const authReducer = makeReducer({}, {
+  SET_AUTH_USER: selectUser,
+  SET_AUTH_ERROR: selectError,
+});
+
+export default authReducer;
