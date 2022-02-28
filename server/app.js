@@ -1,8 +1,9 @@
 const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
-const app = express();
 require("dotenv").config();
+
+const app = express();
 module.exports = app;
 
 // logging middleware
@@ -39,7 +40,7 @@ app.use("*", (req, res) => {
 });
 
 // error handling endware
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   console.error(err);
   console.error(err.stack);
   res.status(err.status || 500).send(err.message || "Internal server error.");
