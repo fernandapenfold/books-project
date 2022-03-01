@@ -9,8 +9,8 @@ export const Home = (props) => {
   const { username } = props;
 
   const handleClick = async () => {
-    const books = await axios.get("https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=AIzaSyCz2qWp-Cl_rlMn6eTlf0AZOhtO4sDArOI")
-    console.log(books);
+    const { data } = await axios.get("/api/search");
+    console.log(data);
   }
 
   return (

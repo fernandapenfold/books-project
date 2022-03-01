@@ -1,5 +1,3 @@
-const { ProvidePlugin } = require("webpack");
-
 module.exports = {
   entry: ["./client/index.js"],
   output: {
@@ -26,9 +24,4 @@ module.exports = {
       os: require.resolve("os-browserify/browser"),
     },
   },
-  plugins: [
-    new ProvidePlugin({
-      process: 'process/browser',
-    }),
-  ],
 };
