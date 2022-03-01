@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
-
-// const URI = "https://www.googleapis.com/books/v1/volumes";
-// const KEY = process.env.GOOGLE;
+import BasicSearch from "./BasicSearch";
 
 const Search = () => {
-  const handleSubmit = () => {}
-
   return (
+    <div>
+      <BasicSearch />
+    </div>
+  )
+}
+
+export default Search;
+
+/*
     <div>
       <form onSubmit={handleSubmit} name="search">
         <div>
@@ -32,7 +37,4 @@ const Search = () => {
         </div>
       </form>
     </div>
-  )
-}
-
-export default Search;
+*/

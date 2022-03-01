@@ -1,4 +1,3 @@
-import axios from "axios";
 import React from "react";
 import { connect } from "react-redux";
 
@@ -8,15 +7,9 @@ import { connect } from "react-redux";
 export const Home = (props) => {
   const { username } = props;
 
-  const handleClick = async () => {
-    const { data } = await axios.get("/api/search");
-    console.log(data);
-  }
-
   return (
     <div>
       <h3>Welcome, {username}</h3>
-      <button onClick={handleClick}>Search</button>
     </div>
   );
 };
