@@ -1,5 +1,4 @@
 export const makeActionCreator = (type, ...argNames) => {
-  console.log("in makeActionCreator =>", type, argNames)
   return (...args) => {
     const action = { type };
     argNames.forEach((arg, idx) => action[arg] = args[idx]);

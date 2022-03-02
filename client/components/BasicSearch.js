@@ -1,13 +1,14 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { fetchBooks } from "../store";
+import { parse } from "../utilityFunctions";
 
 const BasicSearch = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(fetchBooks());
+    dispatch(fetchBooks(parse(e.target.query.value)));
   }
 
   return (

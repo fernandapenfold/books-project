@@ -1,0 +1,1 @@
+export const parse = (str) => str.split(" ").join("+");
