@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import BasicSearch from "./BasicSearch";
+import Books from "./Books";
 
 const Search = () => {
+  const search = useSelector(state => state.search);
+
   return (
     <div>
       <BasicSearch />
+      {search && search.totalItems && <Books books={search.items} />}
     </div>
   )
 }

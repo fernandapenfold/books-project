@@ -32,6 +32,7 @@
     "path-browserify": "^1.0.1",
     "pg": "^8.5.1",
     "process": "^0.11.10",
+    "reselect": "^4.1.5",
     "sequelize": "^6.3.5"
   },
   "devDependencies": {
