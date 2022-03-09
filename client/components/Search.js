@@ -6,27 +6,13 @@ import FormField from "./FormField";
 import Button from "./Button";
 
 const OPTIONS = [
-  { value: "keyword", label: "Keyword", display: true },
+  { value: "", label: "Keyword", display: true },
   { value: "intitle", label: "Title", display: true },
   { value: "inauthor", label: "Author", display: true },
   { value: "inpublisher", label: "Publisher", display: true },
   { value: "subject", label: "Subject", display: true },
   { value: "isbn", label: "ISBN", display: true },
 ];
-
-/*
-[{
-  query: "",
-  param: "keyword" 
-  options: OPTIONS
-}]
-
-  // const [inputFields, setInputFields] = useState([{
-  //   query: "",
-  //   param: "keyword",
-  //   options: OPTIONS,
-  // }]);
-*/
 
 const Search = () => {
   const dispatch = useDispatch();
@@ -39,14 +25,11 @@ const Search = () => {
 
   const onInputChange = (e, index) => {
     const values = [...queries];
-    values[i].input = e.target.value;
+    values[index].input = e.target.value;
     setQueries(values);
   };
 
   const onParamChange = (e, index) => {
-    console.log("event.target.value =>", e.target.value)
-    console.log("index =>", index)
-    console.log("queries =>", queries)
     const values = [...queries];
     values[index].param = e.target.value;
     setQueries(values);
@@ -83,36 +66,5 @@ const Search = () => {
     </div>
   );
 };
-
-// const Search = () => {
-//   const dispatch = useDispatch();
-//   const [inputFields, setInputFields] = useState([OPTIONS]);
-
-//   const onClick = () => {
-//     setInputFields([
-//       ...inputFields,
-//       OPTIONS,
-//     ]);
-//   };
-
-//   const onSubmit = (e) => {
-//     e.preventDefault();
-//     dispatch(fetchBooks(parse(e.target.query.value)));
-//   };
-
-//   return (
-//     <div>
-//       <form onSubmit={onSubmit} name="search">
-//         {inputFields.map((_, i) => (
-//           <FormField key={i} options={inputFields[i]} />
-//         ))}
-//         <div>
-//           <button type="submit">Search</button>
-//         </div>
-//       </form>
-//       <Button onClick={onClick} text="+" />
-//     </div>
-//   );
-// };
 
 export default Search;
