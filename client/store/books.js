@@ -19,13 +19,14 @@ export const fetchBooks = (query) => async (dispatch) => {
   }
 }
 
-// REDUCER
+// SELECTORS
 const selectBooks = (_, action) => action.books;
 const selectError = (_, action) => action.error;
 
-const searchReducer = makeReducer({}, {
+// REDUCER
+const booksReducer = makeReducer({}, {
   SET_BOOKS: selectBooks,
   SET_ERROR: selectError,
 });
 
-export default searchReducer;
+export default booksReducer;

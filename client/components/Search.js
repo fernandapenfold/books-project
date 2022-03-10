@@ -6,12 +6,12 @@ import FormField from "./FormField";
 import Button from "./Button";
 
 const OPTIONS = [
-  { value: "", label: "Keyword", display: true },
-  { value: "intitle", label: "Title", display: true },
-  { value: "inauthor", label: "Author", display: true },
-  { value: "inpublisher", label: "Publisher", display: true },
-  { value: "subject", label: "Subject", display: true },
-  { value: "isbn", label: "ISBN", display: true },
+  { value: "", label: "Keyword" },
+  { value: "intitle", label: "Title" },
+  { value: "inauthor", label: "Author" },
+  { value: "inpublisher", label: "Publisher" },
+  { value: "subject", label: "Subject" },
+  { value: "isbn", label: "ISBN" },
 ];
 
 const Search = () => {
@@ -19,24 +19,33 @@ const Search = () => {
   const [queries, setQueries] = useState([
     {
       input: "",
-      param: "keyword",
+      param: "",
+      options: OPTIONS,
     },
   ]);
+  // const [selectedParams, setSelectedParams] = useState([""]);
 
   const onInputChange = (e, index) => {
-    const values = [...queries];
-    values[index].input = e.target.value;
-    setQueries(values);
+    const _queries = [...queries];
+    _queries[index].input = e.target.value;
+    setQueries(_queries);
   };
 
   const onParamChange = (e, index) => {
-    const values = [...queries];
-    values[index].param = e.target.value;
-    setQueries(values);
+    const _queries = [...queries];
+    _queries[index].param = e.target.value;
+    setQueries(_queries);
+
+    // const _selectedParams = [...selectedParams];
+    // _selectedParams[index] = e.target.value;
+    // setSelectedParams(_selectedParams);
   };
 
   const onClick = () => {
-    setQueries([...queries, { input: "", param: "keyword" }]);
+    // to do: write function that returns first non used param
+    const param = "";
+    setQueries([...queries, { input: "", param }]);
+    // setSelectedParams([ ...selectedParams, param ]);
   };
 
   const onSubmit = (e) => {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Dropdown from "./Dropdown";
 
 const FormField = ({ index, queries, options, onInputChange, onParamChange }) => {
